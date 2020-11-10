@@ -1,0 +1,39 @@
+---
+title: "Project Zero"
+
+output: html_document
+---
+
+
+## Project Notes 
+
+###The Experiment
+
+Previously, a standardised immune stimulation protocol was used in four different Hymenoptera species of varying sociality: Apis mellifera, Bombus terrestris, Ceratina calcarata and Polistes canadensis (three bees and a wasp, respectively.) The experiment was comprised of four treatments: 
+
+1. Naive (N), where the animals were handled much as the others were but no treatment was administered.
+
+2. Sterile stab / PBS (P), where the animals had their abdomens broken with an insect needle dipped in sterile PBS solution.
+
+3. Gram -ve / Staph (SL), where the animals had their abdomens broken with an insect needle dipped in culture containing heat-killed Staphyloccus lentus.
+
+4. Gram +ve / Serr (SM), where the animals had their abdomens broken with an insect needle dipped in culture containing heat-killed Serratia marascens.
+
+All "injections" were administered on the dorsal side of the abdomen. Animals were then kept for 6 hours before being snap-frozen in liquid nitrogen. Abdomens were homogenized in TRIzol using a tissue lyser and chloroform was applied to allow for phase separation. The aqueous was then combined with equal volume ethanol (100%) and RNA was then extracted using Zymo Direct-zol MiniPrep kits.
+
+Library prep and sequencing were undergone out of house using Novogene (details to be added)
+
+###The Bioinformatics
+
+All of the below mentioned files are found in the Scripts/Bash/ directory of this project folder. This work was done using multiple threads on a server.
+
+Each of the data packets were uncompressed and checked against their provided MD5.txt files to check for possible corruption (MDcheck.sh). When all samples passed this step, the read files were trimmed using Trim Galore wrapper (https://github.com/FelixKrueger/TrimGalore). Genome indices and mapping was undergone using STAR (https://github.com/alexdobin/STAR). Genomes were indexed manually and mapping was automated using a bash script (MapperLoop.sh). Countfiles were produced using the --quantmode GeneCounts specification.
+
+The results for each sample were ordered by species and currently reside in input/Counts_Raw/
+
+
+
+
+
+
+
