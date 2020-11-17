@@ -1,5 +1,5 @@
 ---
-title: "Project Zero"
+title: "Core Project"
 
 output: html_document
 ---
@@ -31,8 +31,24 @@ Each of the data packets were uncompressed and checked against their provided MD
 
 The results for each sample were ordered by species and currently reside in input/Counts_Raw/
 
+##Analysis
+
+###Making Count tables per Species
+
+The raw count tables have multiple count columns. These need to be reduced to just one and then all counts of each sample per species needs to be combined into a species table.
+
+An example of a raw counts file:
+
+```{r}
+cat(readLines("input/Counts_Raw/Amel/output_AM_P_057ReadsPerGene.out.tab", n = 10), sep = "\n")
+```
 
 
+This script reads in the raw counts table, takes just the first column of each (as the libaries are unstranded) and concatanates them by species. The files are saved as "output/"Species"_count.tsv"
+
+```{r}
+source("Scripts/R/countTableGen.R", local = knitr::knit_global())
+```
 
 
 
