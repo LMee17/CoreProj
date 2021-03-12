@@ -14,6 +14,7 @@ library("stringr")
 for (i in 1:length(data.tab)){
   data.tab[[i]] <- data.tab[[i]][-c(1:4),]
   data.tab[[i]]$GeneInfo <- str_remove(data.tab[[i]]$GeneInfo, "rna-")
+  data.tab[[i]]$GeneInfo <- str_remove(data.tab[[i]]$GeneInfo, "gene-")
 }
 
 
