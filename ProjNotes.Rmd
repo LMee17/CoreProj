@@ -50,6 +50,18 @@ This script reads in the raw counts table, takes just the first column of each (
 source("Scripts/R/countTableGen.R", local = knitr::knit_global())
 ```
 
+These are the source count files, but if I want to use Degust then I need to remove the non-gene count rows.
 
+```{r}
+source("Scripts/R/countTableGen2.R", local = knitr::knit_global())
+```
+
+These files give the absolute basic information. Which makes looking at them on degust kinda slow and not really informative. I need tables with gene names and, in the case of Amel, I can add immune (canon/non-canon) and non-immune flags.
+
+Let's start with just adding gene information.
+
+```{r}
+
+```
 
 
