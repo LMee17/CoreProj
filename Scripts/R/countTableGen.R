@@ -38,7 +38,7 @@ count.gen <- function(x){
 #Designate the species involved
 #Create an empty list the same size as the number of species ready to fill with the
 #count.gen's output
-species <- c("Amel", "Bter", "Ccal", "Pcan")
+species <- c("Amel", "Bter", "Caus", "Plan")
 data <- vector(mode = "list", length = 4)
 
 for (i in 1:length(species)){
