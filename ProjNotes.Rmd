@@ -40,7 +40,7 @@ The raw count tables have multiple count columns. These need to be reduced to ju
 An example of a raw counts file:
 
 ```{r}
-cat(readLines("input/Counts_Raw/Amel/output_AM_P_057ReadsPerGene.out.tab", n = 10), sep = "\n")
+cat(readLines("input/Counts_Raw/Bter/output_BT_A_N_025ReadsPerGene.out.tab", n = 10), sep = "\n")
 ```
 
 
@@ -58,10 +58,46 @@ source("Scripts/R/countTableGen2.R", local = knitr::knit_global())
 
 These files give the absolute basic information. Which makes looking at them on degust kinda slow and not really informative. I need tables with gene names and, in the case of Amel, I can add immune (canon/non-canon) and non-immune flags.
 
+To do this with the Caus files from Sandra Rehan's group (C.aus genome and annotations) I'm first going to have to manually edit some of the transcript names, some of which are currently grouped (i.e Caust.v2_013160-RC,Caust.v2_013160-RB,Caust.v2_013160-RD as one entry). Then I'm going to have to play with the annotation files so that they're readable. I may just do C.aus separately but we'll see what happens.
+
+I will have to use tsv's as there are commas peppered throughout the gene descriptions.
+
 Let's start with just adding gene information.
 
 ```{r}
-
+source("Scripts/R/countTableAnnotate.R", local = knitr::knit_global())
 ```
 
+I can go one step further with the Amel table and add immune classes
+
+```{r}
+amel <- read.table("output/Amel_counts_annotated.tsv", header = T, sep = "\t", quote ="")
+
+head(amel)
+```
+
+```{r}
+imm <- read.table("../../ProjectZero/Proj0_Analysis/ImmResources/ImmInput_CodeML_ProjZero_Mar2020.tsv", header = T, sep = "\t")
+
+imm.slim <- imm[,c(2,4)]
+
+head(imm.slim)
+```
+
+```{r}
+amel <- merge(amel, imm.slim, by = "GeneID", all.x = T)
+
+write.table(amel, "output/Amel_counts_annotated.v2.tsv", sep = "\t", quote = F, 
+            col.names = T, row.names = F)
+```
+
+```{r}
+head(amel)
+```
+
+Now to fix C.aus
+
+```{r}
+source("Scripts/R/countTableAnnotate.R", local = knitr::knit_global())
+```
 
