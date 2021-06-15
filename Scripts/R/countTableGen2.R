@@ -22,8 +22,8 @@ library(dplyr)
 for (i in 1:length(filelist)){
   one <- strsplit(filelist[i], "_", fixed =T)
   species <- one[[1]][1]
-  write.table(data.tab[[i]], file = paste(species, "counts.v2.csv", sep = "_"),
-              col.names = T, row.names = F, quote = F, sep =",")
+  write.table(data.tab[[i]], file = paste(species, "counts.v2.tsv", sep = "_"),
+              col.names = T, row.names = F, quote = F, sep ="\t")
 }
 
 
